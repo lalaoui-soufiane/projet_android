@@ -15,16 +15,22 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
 import fr.ccm.m1.android.projet.R;
 import fr.ccm.m1.android.projet.databinding.ActivityLoginBinding;
+import fr.ccm.m1.android.projet.firebaseService.AvatarService;
+import fr.ccm.m1.android.projet.firebaseService.UtilisateurService;
 import fr.ccm.m1.android.projet.model.Login;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "INFO";
     private FirebaseAuth mAuth;
+    private AvatarService avatarService;
+    private UtilisateurService utilisateurService;
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         binding.setActivity(this);
         binding.setUserLogin(new Login());
+        utilisateurService = new UtilisateurService(firebaseDatabase);
+        avatarService = new AvatarService(firebaseDatabase);
     }
 
     @Override
@@ -85,7 +93,10 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-
+                            if (mAuth.getCurrentUser() != null) {
+                                avatarService.createAvatar(mAuth.getCurrentUser());
+                                utilisateurService.createUser(mAuth.getCurrentUser());
+                            }
                             goToMenu(mAuth.getCurrentUser());
                         } else {
                             // If sign in fails, display a message to the user.
