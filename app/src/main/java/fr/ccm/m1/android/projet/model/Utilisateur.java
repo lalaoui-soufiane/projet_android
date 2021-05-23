@@ -6,7 +6,6 @@ public class Utilisateur {
 
     // region attributs
 
-    private int utilisateurId;
     private String nom;
     private Localisation derniereLocalisation;
     private Avatar avatarUtilisateur;
@@ -17,14 +16,6 @@ public class Utilisateur {
 
 
     //region getters and setters
-
-    public int getUtilisateurId() {
-        return utilisateurId;
-    }
-
-    public void setUtilisateurId(int utilisateurId) {
-        this.utilisateurId = utilisateurId;
-    }
 
     public String getNom() {
         return nom;
