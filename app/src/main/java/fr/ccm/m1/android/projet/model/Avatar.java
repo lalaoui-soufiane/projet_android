@@ -8,8 +8,6 @@ public class Avatar extends BaseObservable {
 
     //region attribut
 
-    private int idAvatar;
-    private int idProprietaire;
     private Utilisateur telephoneUtilisateur;
     private boolean enVoyage;
     private Voyage voyageEnCours;
@@ -30,22 +28,6 @@ public class Avatar extends BaseObservable {
     //endregion
 
     //region getters and setters
-
-    public int getIdAvatar() {
-        return idAvatar;
-    }
-
-    public void setIdAvatar(int idAvatar) {
-        this.idAvatar = idAvatar;
-    }
-
-    public int getIdProprietaire() {
-        return idProprietaire;
-    }
-
-    public void setIdProprietaire(int idProprietaire) {
-        this.idProprietaire = idProprietaire;
-    }
 
     public Utilisateur getTelephoneUtilisateur() {
         return telephoneUtilisateur;
