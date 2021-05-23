@@ -2,12 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.LoginActivity">
 
     <data>
         <variable
             name="activity"
-            type="fr.ccm.m1.android.projet.activity.MainActivity" />
+            type="fr.ccm.m1.android.projet.activity.LoginActivity" />
+        <variable
+            name="userLogin"
+            type="fr.ccm.m1.android.projet.model.Login" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +39,7 @@
             android:layout_marginBottom="41dp"
             android:ems="10"
             android:hint="@string/email"
-            android:text="@={activity.email}"
+            android:text="@={userLogin.email}"
             android:inputType="textEmailAddress"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
@@ -52,7 +55,7 @@
             android:layout_marginBottom="45dp"
             android:ems="10"
             android:hint="@string/mot_de_passe"
-            android:text="@={activity.password}"
+            android:text="@={userLogin.password}"
             android:inputType="textPassword"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/button"
@@ -65,7 +68,7 @@
             android:layout_width="252dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="26dp"
-            android:onClick="@{() -> activity.connection()}"
+            android:onClick="@{() -> activity.connection(userLogin.email,userLogin.password)}"
             android:text="@string/compte_existant"
             app:layout_constraintBottom_toTopOf="@+id/button2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -77,7 +80,7 @@
             android:layout_width="252dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="184dp"
-            android:onClick="@{() -> activity.enregistrement()}"
+            android:onClick="@{() -> activity.enregistrement(userLogin.email,userLogin.email)}"
             android:text="@string/nouveau_compte"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

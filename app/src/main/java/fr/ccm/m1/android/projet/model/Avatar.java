@@ -1,8 +1,10 @@
 package fr.ccm.m1.android.projet.model;
 
+import androidx.databinding.BaseObservable;
+
 import java.util.List;
 
-public class Avatar {
+public class Avatar extends BaseObservable {
 
     //region attribut
 
