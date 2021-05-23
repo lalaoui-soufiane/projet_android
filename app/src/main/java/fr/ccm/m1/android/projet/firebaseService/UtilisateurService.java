@@ -17,7 +17,7 @@ public class UtilisateurService {
     public Utilisateur createUser(FirebaseUser user) {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setNom(user.getEmail());
-        utilisateur.setDerniereLocalisation();
+        //utilisateur.setDerniereLocalisation();
         db.child(user.getUid()).setValue(utilisateur);
         return utilisateur;
     }
