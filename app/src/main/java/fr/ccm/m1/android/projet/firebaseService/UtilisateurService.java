@@ -16,6 +16,8 @@ public class UtilisateurService {
     public UtilisateurService(FirebaseFirestore db) {
         this.db = db;
     }
+
+
     public Utilisateur createUser(FirebaseUser user, Localisation localisation, Avatar avatar) {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setNom(user.getEmail());
