@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.ccm.m1.android.projet">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Projet"
-        android:fullBackupContent="@xml/backup_descriptor">
+        android:theme="@style/Theme.Projet">
+        <activity android:name=".activity.ConfigAvatarActivity"></activity>
+        <activity android:name=".activity.HistoriqueVoyagesActivity" />
+        <activity android:name=".activity.AvatarsSurMonTelActivity" />
+        <activity android:name=".activity.RamenerAvatarActivity" />
+        <activity android:name=".activity.EnvoyerAvatarActivity" />
+        <activity android:name=".activity.AvatarLocalisationActivity" />
         <activity android:name=".activity.MenuActivity" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>

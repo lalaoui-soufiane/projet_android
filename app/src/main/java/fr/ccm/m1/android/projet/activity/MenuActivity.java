@@ -15,6 +15,7 @@ import fr.ccm.m1.android.projet.databinding.ActivityMenuBinding;
 
 public class MenuActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String uid, email = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,6 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         Intent intent = getIntent();
-        String uid, email = null;
         if (intent != null) {
             if (intent.hasExtra("utilisateurId") && intent.hasExtra("email")) { // vérifie qu'une valeur est associée à la clé “edittext”
                 uid = intent.getStringExtra("utilisateurId"); // on récupère la valeur associée à la clé
@@ -36,10 +36,65 @@ public class MenuActivity extends AppCompatActivity {
         binding.setUsername(email);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
+
+    public void goToLocalisationAvatar(){
+        Intent menuActivity = new Intent(MenuActivity.this, AvatarLocalisationActivity.class);
+        menuActivity.putExtra("utilisateurId",uid);
+        menuActivity.putExtra("email",email);
+        startActivity(menuActivity);
+        finish();
+    }
+
+    public void goToAvatarSurMonTel(){
+        Intent menuActivity = new Intent(MenuActivity.this, AvatarsSurMonTelActivity.class);
+        menuActivity.putExtra("utilisateurId",uid);
+        menuActivity.putExtra("email",email);
+        startActivity(menuActivity);
+        finish();
+    }
+
+    public void goToConfigAvatar(){
+        Intent menuActivity = new Intent(MenuActivity.this, ConfigAvatarActivity.class);
+        menuActivity.putExtra("utilisateurId",uid);
+        menuActivity.putExtra("email",email);
+        startActivity(menuActivity);
+        finish();
+    }
+
+    public void goToHistoriqueVoyages(){
+        Intent menuActivity = new Intent(MenuActivity.this, HistoriqueVoyagesActivity.class);
+        menuActivity.putExtra("utilisateurId",uid);
+        menuActivity.putExtra("email",email);
+        startActivity(menuActivity);
+        finish();
+    }
+
+    public void goToRamenerAvatar(){
+        Intent menuActivity = new Intent(MenuActivity.this, RamenerAvatarActivity.class);
+        menuActivity.putExtra("utilisateurId",uid);
+        menuActivity.putExtra("email",email);
+        startActivity(menuActivity);
+        finish();
+    }
+
+    public void goToEnvoyerAvatar(){
+        Intent menuActivity = new Intent(MenuActivity.this, EnvoyerAvatarActivity.class);
+        menuActivity.putExtra("utilisateurId",uid);
+        menuActivity.putExtra("email",email);
+        startActivity(menuActivity);
+        finish();
+    }
+
     public void goToLogin() {
         FirebaseAuth.getInstance().signOut();
         Intent loginActivity = new Intent(MenuActivity.this, LoginActivity.class);
         startActivity(loginActivity);
+        finish(); //Stops the current activity
     }
 }
 

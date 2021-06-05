@@ -13,4 +13,5 @@
     <string name="changer_les_configs_de_mon_avatar">Changer les configs de mon avatar</string>
     <string name="avatars_sur_mon_tel">Avatars sur mon tel</string>
     <string name="localisation_avatar">Localisation avatar</string>
+    <string name="retour"><![CDATA[< Retour]]></string>
 </resources>

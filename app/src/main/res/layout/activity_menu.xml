@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="14dp"
+            android:onClick="@{() -> activity.goToLocalisationAvatar()}"
             android:text="@string/localisation_avatar"
             app:layout_constraintBottom_toTopOf="@+id/button7"
             app:layout_constraintStart_toStartOf="parent" />
@@ -35,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="16dp"
+            android:onClick="@{() -> activity.goToAvatarSurMonTel()}"
             android:text="@string/avatars_sur_mon_tel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menu_ramener_avatar_btn" />
@@ -45,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="42dp"
+            android:onClick="@{() -> activity.goToConfigAvatar()}"
             android:text="@string/changer_les_configs_de_mon_avatar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menu_historique_avatar_btn" />
@@ -55,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="129dp"
             android:layout_marginEnd="15dp"
+            android:onClick="@{() -> activity.goToEnvoyerAvatar()}"
             android:text="@string/envoyer_mon_avatar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -65,6 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="13dp"
+            android:onClick="@{() -> activity.goToRamenerAvatar()}"
             android:text="@string/ramener_mon_avatar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button7" />
@@ -75,6 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
+            android:onClick="@{() -> activity.goToHistoriqueVoyages()}"
             android:text="@string/voir_l_historique_des_voyages"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menu_avatar_sur_tel_btn" />
@@ -96,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="30dp"
-            android:text="@string/username"
+            android:text="@{username}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
