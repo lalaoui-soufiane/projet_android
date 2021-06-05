@@ -96,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         if(user != null){
             Intent menuActivity = new Intent(LoginActivity.this, MenuActivity.class);
             menuActivity.putExtra("utilisateurId",user.getUid());
+            menuActivity.putExtra("email",user.getEmail());
             startActivity(menuActivity);
         }
     }

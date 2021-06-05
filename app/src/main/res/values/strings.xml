@@ -5,4 +5,12 @@
     <string name="mot_de_passe">Mot de passe</string>
     <string name="compte_existant">compte existent</string>
     <string name="nouveau_compte">Nouveau compte</string>
+    <string name="username">Username</string>
+    <string name="d_connexion">Déconnexion</string>
+    <string name="voir_l_historique_des_voyages">Voir l\'historique des voyages</string>
+    <string name="ramener_mon_avatar">Ramener mon avatar</string>
+    <string name="envoyer_mon_avatar">Envoyer mon avatar</string>
+    <string name="changer_les_configs_de_mon_avatar">Changer les configs de mon avatar</string>
+    <string name="avatars_sur_mon_tel">Avatars sur mon tel</string>
+    <string name="localisation_avatar">Localisation avatar</string>
 </resources>
