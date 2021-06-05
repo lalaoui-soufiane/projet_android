@@ -3,6 +3,6 @@
     <string name="connection">Connection :</string>
     <string name="email">Email</string>
     <string name="mot_de_passe">Mot de passe</string>
-    <string name="compte_existant">compte existant</string>
+    <string name="compte_existant">compte existent</string>
     <string name="nouveau_compte">Nouveau compte</string>
 </resources>

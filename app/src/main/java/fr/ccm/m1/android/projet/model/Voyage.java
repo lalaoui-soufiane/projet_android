@@ -6,21 +6,21 @@ public class Voyage{
 
     //region attribut
 
-    private int idVoyage;
+    private int voyageId;
     private List<Localisation> trajet;
 
     //endregion
 
     //region getters and setters
 
-    public int getIdVoyage() {
-        return idVoyage;
+
+    public int getVoyageId() {
+        return voyageId;
     }
 
-    public void setIdVoyage(int idVoyage) {
-        this.idVoyage = idVoyage;
+    public void setVoyageId(int voyageId) {
+        this.voyageId = voyageId;
     }
-
 
     public List<Localisation> getTrajet() {
         return trajet;

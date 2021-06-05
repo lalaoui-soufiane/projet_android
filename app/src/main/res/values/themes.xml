@@ -15,12 +15,4 @@
         <item name="android:fontFamily">monospace</item>
     </style>
 
-    <style name="Theme.Projet.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.Projet.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.Projet.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

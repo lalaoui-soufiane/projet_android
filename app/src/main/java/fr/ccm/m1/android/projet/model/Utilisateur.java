@@ -1,18 +1,38 @@
 package fr.ccm.m1.android.projet.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Utilisateur {
 
     // region attributs
-
+    private String id;
     private String nom;
     private Localisation derniereLocalisation;
     private Avatar avatarUtilisateur;
     private List<Avatar> avatarInviteListe;
     private int minimumFrequenceCollecteLocalisation;
-
     // endregion
+
+    //region methodes
+    public Map<String, Object> toDocumentMap(){
+        Map<String,Object> document = new HashMap<>();
+        document.put("nom",nom);
+        document.put("minimumFrequenceCollecteLocalisation",minimumFrequenceCollecteLocalisation);
+        if(derniereLocalisation != null){
+            document.put("derniereLocalisationId",derniereLocalisation.getLocalisationId());
+        }else{
+            document.put("derniereLocalisationId",0);
+        }
+        if(avatarInviteListe != null){
+            document.put("avatarInviteListe", avatarInviteListe.stream().map(Avatar::getId).collect(Collectors.toList()));
+        }
+        document.put("minimumFrequenceCollecteLocalisation", minimumFrequenceCollecteLocalisation);
+        return document;
+    }
+    //endregion
 
 
     //region getters and setters
@@ -57,6 +77,13 @@ public class Utilisateur {
         this.minimumFrequenceCollecteLocalisation = minimumFrequenceCollecteLocalisation;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     //endregion
 
 
