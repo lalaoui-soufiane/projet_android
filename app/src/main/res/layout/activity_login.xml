@@ -80,7 +80,7 @@
             android:layout_width="252dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="184dp"
-            android:onClick="@{() -> activity.enregistrement(userLogin.email,userLogin.email)}"
+            android:onClick="@{() -> activity.enregistrement(userLogin.email,userLogin.password)}"
             android:text="@string/nouveau_compte"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
