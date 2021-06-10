@@ -10,26 +10,20 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import fr.ccm.m1.android.projet.R;
 import fr.ccm.m1.android.projet.databinding.ActivityConfigAvatarBinding;
-import fr.ccm.m1.android.projet.databinding.ActivityEnvoyerAvatarBinding;
 
 public class ConfigAvatarActivity extends AppCompatActivity {
-    private String uid, email = null;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config_avatar);
-        Intent intent = getIntent();
-        if (intent != null) {
-            if (intent.hasExtra("utilisateurId") && intent.hasExtra("email")) { // vérifie qu'une valeur est associée à la clé “edittext”
-                uid = intent.getStringExtra("utilisateurId"); // on récupère la valeur associée à la clé
-                email = intent.getStringExtra("email"); // on récupère la valeur associée à la clé
-            } else {
-                goToLogin();
-            }
+        if(mAuth.getCurrentUser() == null){
+            goToLogin();
+        }else {
+            ActivityConfigAvatarBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_config_avatar);
+            binding.setActivity(this);
+            binding.setUsername(mAuth.getCurrentUser().getEmail());
         }
-        ActivityConfigAvatarBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_config_avatar);
-        binding.setActivity(this);
-        binding.setUsername(email);
     }
 
     @Override
@@ -40,8 +34,6 @@ public class ConfigAvatarActivity extends AppCompatActivity {
 
     public void goToMenu() {
         Intent menuActivity = new Intent(ConfigAvatarActivity.this, MenuActivity.class);
-        menuActivity.putExtra("utilisateurId", uid);
-        menuActivity.putExtra("email", email);
         startActivity(menuActivity);
         finish();
     }

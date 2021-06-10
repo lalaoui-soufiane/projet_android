@@ -11,19 +11,22 @@ import fr.ccm.m1.android.projet.model.Utilisateur;
 
 public class UtilisateurService {
 
-    private FirebaseFirestore db ;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public UtilisateurService(FirebaseFirestore db) {
-        this.db = db;
+
+    public UtilisateurService() {}
+    private static UtilisateurService INSTANCE = new UtilisateurService();
+    public static UtilisateurService getInstance()
+    {
+        return INSTANCE;
     }
 
 
     public Utilisateur createUser(FirebaseUser user, Localisation localisation, Avatar avatar) {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setNom(user.getEmail());
-        utilisateur.setDerniereLocalisation(localisation);
-        utilisateur.setAvatarUtilisateur(avatar);
-        db.collection("utilisateurs").document(user.getUid()).set(utilisateur.toDocumentMap());
+        utilisateur.setDerniereLocalisationId(localisation.getLocalisationId());
+        db.collection("utilisateurs").document(user.getUid()).set(utilisateur);
         return utilisateur;
     }
 }

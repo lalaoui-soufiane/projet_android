@@ -1,5 +1,7 @@
 package fr.ccm.m1.android.projet.model;
 
+import android.location.Location;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,28 +12,14 @@ public class Localisation {
 
     private String localisationId;
     private String referenceUtilisateurId;
-    private LocalDateTime date;
+    private String date;
     private double longitude;
     private double latitude;
+    private String adresse;
     //endregion
 
     //region getters and setters
 
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
 
     public String getLocalisationId() {
         return localisationId;
@@ -49,24 +37,31 @@ public class Localisation {
         this.referenceUtilisateurId = referenceUtilisateurId;
     }
 
-    public LocalDateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
     //endregion
 
-    //region methodes
-    public Map<String, Object> toDocumentMap(){
-        Map<String,Object> document = new HashMap<>();
-        document.put("referenceUtilisateurId",referenceUtilisateurId);
-        document.put("date",date);
-        document.put("longitude",longitude);
-        document.put("latitude",latitude);
-        return document;
-    }
-    //endregion
+
 }

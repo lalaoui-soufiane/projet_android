@@ -7,7 +7,7 @@ public class Voyage{
     //region attribut
 
     private int voyageId;
-    private List<Localisation> trajet;
+    private List<String> trajet;
 
     //endregion
 
@@ -22,11 +22,11 @@ public class Voyage{
         this.voyageId = voyageId;
     }
 
-    public List<Localisation> getTrajet() {
+    public List<String> getTrajet() {
         return trajet;
     }
 
-    public void setTrajet(List<Localisation> trajet) {
+    public void setTrajet(List<String> trajet) {
         this.trajet = trajet;
     }
 

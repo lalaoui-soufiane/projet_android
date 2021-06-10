@@ -11,6 +11,9 @@
         <variable
             name="userLogin"
             type="fr.ccm.m1.android.projet.model.Login" />
+        <variable
+            name="localisation"
+            type="fr.ccm.m1.android.projet.model.Login" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

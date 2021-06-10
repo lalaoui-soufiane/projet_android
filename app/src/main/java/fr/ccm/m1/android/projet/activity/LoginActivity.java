@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Locale;
 import java.util.Objects;
 
 import fr.ccm.m1.android.projet.R;
@@ -35,12 +37,11 @@ import fr.ccm.m1.android.projet.model.Localisation;
 import fr.ccm.m1.android.projet.model.Login;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String TAG = "INFO";
+    private static final String TAG = "LOGIN ACTIVITY";
     private FirebaseAuth mAuth;
-    private AvatarService avatarService;
-    private LocalisationService localisationService;
-    private UtilisateurService utilisateurService;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private AvatarService avatarService = AvatarService.getInstance();
+    private LocalisationService localisationService =  LocalisationService.getInstance();
+    private UtilisateurService utilisateurService = UtilisateurService.getInstance();
     private FusedLocationProviderClient fusedLocationProviderClient;
     private static final int PERMS_CALL_ID = 200;
     private Location location;
@@ -52,9 +53,6 @@ public class LoginActivity extends AppCompatActivity {
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         binding.setActivity(this);
         binding.setUserLogin(new Login());
-        utilisateurService = new UtilisateurService(db);
-        avatarService = new AvatarService(db);
-        localisationService = new LocalisationService(db);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         checkPermission();
     }
@@ -71,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                         public void onSuccess(Location location) {
                             if (location != null) {
                                 setLocation(location);
-                                Toast.makeText(LoginActivity.this,"longitude: "+location.getLongitude()+", latitude: "+ location.getLatitude(),Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -84,19 +81,17 @@ public class LoginActivity extends AppCompatActivity {
         checkPermission();
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        if(mAuth.getCurrentUser() != null){
-//            goToMenu(mAuth.getCurrentUser());
-//        }
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(mAuth.getCurrentUser() != null){
+            goToMenu(mAuth.getCurrentUser());
+        }
+    }
 
     private void goToMenu(FirebaseUser user) {
         if(user != null){
             Intent menuActivity = new Intent(LoginActivity.this, MenuActivity.class);
-            menuActivity.putExtra("utilisateurId",user.getUid());
-            menuActivity.putExtra("email",user.getEmail());
             startActivity(menuActivity);
         }
     }
@@ -158,4 +153,7 @@ public class LoginActivity extends AppCompatActivity {
     public void setLocation(Location location) {
         this.location = location;
     }
+
+
+
 }

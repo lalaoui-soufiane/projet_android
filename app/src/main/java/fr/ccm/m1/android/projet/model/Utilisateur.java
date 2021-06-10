@@ -10,28 +10,13 @@ public class Utilisateur {
     // region attributs
     private String id;
     private String nom;
-    private Localisation derniereLocalisation;
-    private Avatar avatarUtilisateur;
+    private String derniereLocalisationId;
     private List<Avatar> avatarInviteListe;
     private int minimumFrequenceCollecteLocalisation;
     // endregion
 
     //region methodes
-    public Map<String, Object> toDocumentMap(){
-        Map<String,Object> document = new HashMap<>();
-        document.put("nom",nom);
-        document.put("minimumFrequenceCollecteLocalisation",minimumFrequenceCollecteLocalisation);
-        if(derniereLocalisation != null){
-            document.put("derniereLocalisationId",derniereLocalisation.getLocalisationId());
-        }else{
-            document.put("derniereLocalisationId",0);
-        }
-        if(avatarInviteListe != null){
-            document.put("avatarInviteListe", avatarInviteListe.stream().map(Avatar::getId).collect(Collectors.toList()));
-        }
-        document.put("minimumFrequenceCollecteLocalisation", minimumFrequenceCollecteLocalisation);
-        return document;
-    }
+
     //endregion
 
 
@@ -45,20 +30,12 @@ public class Utilisateur {
         this.nom = nom;
     }
 
-    public Localisation getDerniereLocalisation() {
-        return derniereLocalisation;
+    public String getDerniereLocalisationId() {
+        return derniereLocalisationId;
     }
 
-    public void setDerniereLocalisation(Localisation derniereLocalisation) {
-        this.derniereLocalisation = derniereLocalisation;
-    }
-
-    public Avatar getAvatarUtilisateur() {
-        return avatarUtilisateur;
-    }
-
-    public void setAvatarUtilisateur(Avatar avatarUtilisateur) {
-        this.avatarUtilisateur = avatarUtilisateur;
+    public void setDerniereLocalisationId(String derniereLocalisationId) {
+        this.derniereLocalisationId = derniereLocalisationId;
     }
 
     public List<Avatar> getAvatarInviteListe() {
