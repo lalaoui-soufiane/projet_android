@@ -1,10 +1,13 @@
 package fr.ccm.m1.android.projet.model;
 
 import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import fr.ccm.m1.android.projet.BR;
 
 public class Avatar extends BaseObservable {
 
@@ -15,8 +18,8 @@ public class Avatar extends BaseObservable {
     private String utilisateurDuTelephoneId;
     private String derniereLocalisationId;
     private boolean enVoyage;
-    private Voyage voyageEnCours;
-    private List<Voyage> historiqueDesVoyages;
+    private String voyageEnCoursId;
+    private List<String> historiqueDesVoyagesId;
     private int tempsDuVoyage; // en minutes
     private int tempsSurUnTelephone; // en minutes
     private int distanceDuVoyage; //en mètres
@@ -27,7 +30,6 @@ public class Avatar extends BaseObservable {
 
     //region getters and setters
 
-
     public String getUtilisateurDuTelephoneId() {
         return utilisateurDuTelephoneId;
     }
@@ -35,29 +37,30 @@ public class Avatar extends BaseObservable {
     public void setUtilisateurDuTelephoneId(String utilisateurDuTelephoneId) {
         this.utilisateurDuTelephoneId = utilisateurDuTelephoneId;
     }
-
     public boolean isEnVoyage() {
         return enVoyage;
     }
 
     public void setEnVoyage(boolean enVoyage) {
+
         this.enVoyage = enVoyage;
     }
 
-    public Voyage getVoyageEnCours() {
-        return voyageEnCours;
+    public String getVoyageEnCoursId() {
+        return voyageEnCoursId;
     }
 
-    public void setVoyageEnCours(Voyage voyageEnCours) {
-        this.voyageEnCours = voyageEnCours;
+    public void setVoyageEnCoursId(String voyageEnCoursId) {
+        this.voyageEnCoursId = voyageEnCoursId;
     }
 
-    public List<Voyage> getHistoriqueDesVoyages() {
-        return historiqueDesVoyages;
+    public List<String> getHistoriqueDesVoyagesId() {
+        return historiqueDesVoyagesId;
     }
 
-    public void setHistoriqueDesVoyages(List<Voyage> historiqueDesVoyages) {
-        this.historiqueDesVoyages = historiqueDesVoyages;
+    public void setHistoriqueDesVoyagesId(List<String> historiqueDesVoyagesId) {
+        this.historiqueDesVoyagesId = historiqueDesVoyagesId;
+
     }
 
     public int getTempsDuVoyage() {
@@ -65,7 +68,9 @@ public class Avatar extends BaseObservable {
     }
 
     public void setTempsDuVoyage(int tempsDuVoyage) {
+
         this.tempsDuVoyage = tempsDuVoyage;
+
     }
 
     public int getTempsSurUnTelephone() {
@@ -92,20 +97,25 @@ public class Avatar extends BaseObservable {
         this.distanceSurUnTelephone = distanceSurUnTelephone;
     }
 
+    @Bindable
     public int getFrequenceCollecteLocalisation() {
         return frequenceCollecteLocalisation;
     }
 
     public void setFrequenceCollecteLocalisation(int frequenceCollecteLocalisation) {
         this.frequenceCollecteLocalisation = frequenceCollecteLocalisation;
+        notifyPropertyChanged(BR.frequenceCollecteLocalisation);
+
     }
 
+    @Bindable
     public String getDerniereLocalisationId() {
         return derniereLocalisationId;
     }
 
     public void setDerniereLocalisationId(String derniereLocalisationId) {
         this.derniereLocalisationId = derniereLocalisationId;
+        notifyPropertyChanged(BR.derniereLocalisationId);
     }
 
     //endregion

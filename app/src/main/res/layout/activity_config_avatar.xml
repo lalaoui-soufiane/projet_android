@@ -6,28 +6,177 @@
 
     <data>
 
+        <import type="fr.ccm.m1.android.projet.converter.ConverterInteger"/>
         <variable
             name="activity"
             type="fr.ccm.m1.android.projet.activity.ConfigAvatarActivity" />
 
         <variable
-            name="username"
-            type="java.lang.String" />
+            name="avatar"
+            type="fr.ccm.m1.android.projet.model.Avatar" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="@+id/frequencecollecte"
+        app:layout_constraintEnd_toEndOf="@+id/textView8"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/frequencecollecte">
 
-        <Button
-            android:id="@+id/avatar_localisation_retour_btn"
-            android:layout_width="113dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="16dp"
-            android:onClick="@{() -> activity.goToMenu()}"
-            android:text="@string/retour"
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="41dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="17dp"
+            android:text="@string/distance_sur_un_t_l_phone_km"
+            app:layout_constraintBottom_toTopOf="@+id/textView12"
+            app:layout_constraintEnd_toStartOf="@+id/editTextDistanceTelephone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="41dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="35dp"
+            android:text="@string/fr_quence_de_collecte_de_localisation_minute"
+            app:layout_constraintBottom_toTopOf="@+id/button3"
+            app:layout_constraintEnd_toStartOf="@+id/editTextFrequence"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="41dp"
+            android:layout_marginTop="54dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="18dp"
+            android:text="@string/temps_du_voyage_minute"
+            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintEnd_toStartOf="@+id/editTextTempsVoyage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="41dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="13dp"
+            android:text="@string/distance_du_voyang_km"
+            app:layout_constraintBottom_toTopOf="@+id/textView11"
+            app:layout_constraintEnd_toStartOf="@+id/editTextDistanceVoyage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="41dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="12dp"
+            android:text="@string/temps_sur_un_t_l_phone_minute"
+            app:layout_constraintBottom_toTopOf="@+id/textView14"
+            app:layout_constraintEnd_toStartOf="@+id/editTextTempTelephone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <EditText
+            android:id="@+id/editTextTempsVoyage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="57dp"
+            android:layout_marginEnd="53dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="@={ConverterInteger.convertIntToString(activity.tempsVoyage)}"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTempTelephone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextTempTelephone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="53dp"
+            android:layout_marginBottom="28dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="@={ConverterInteger.convertIntToString(activity.tempsTelephone)}"
+            app:layout_constraintBottom_toTopOf="@+id/editTextDistanceVoyage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTempsVoyage"
+            tools:ignore="TextFields" />
+
+        <EditText
+            android:id="@+id/editTextDistanceVoyage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="53dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="@={ConverterInteger.convertIntToString(activity.distanceVoyage)}"
+            app:layout_constraintBottom_toTopOf="@+id/editTextDistanceTelephone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTempTelephone" />
+
+        <EditText
+            android:id="@+id/editTextDistanceTelephone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="53dp"
+            android:layout_marginBottom="18dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="@={ConverterInteger.convertIntToString(activity.distanceTelephone)}"
+
+            app:layout_constraintBottom_toTopOf="@+id/editTextFrequence"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDistanceVoyage"
+            tools:ignore="TextFields" />
+
+        <EditText
+            android:id="@+id/editTextFrequence"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="53dp"
+            android:layout_marginBottom="302dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="@={ConverterInteger.convertIntToString(activity.frequenceCollecte)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView12"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDistanceTelephone" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="57dp"
+            android:layout_marginEnd="57dp"
+            android:layout_marginBottom="192dp"
+            android:text="@string/valider_les_modifications"
+            android:onClick="@{() -> activity.modifier()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

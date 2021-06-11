@@ -15,7 +15,7 @@ public class Localisation {
     private String date;
     private double longitude;
     private double latitude;
-    private String adresse;
+    private String adresseDetail;
     //endregion
 
     //region getters and setters
@@ -59,6 +59,14 @@ public class Localisation {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public String getAdresseDetail() {
+        return adresseDetail;
+    }
+
+    public void setAdresseDetail(String adresseDetail) {
+        this.adresseDetail = adresseDetail;
     }
 
     //endregion
