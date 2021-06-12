@@ -15,32 +15,34 @@ public class Avatar extends BaseObservable {
     public Avatar() {}
 
     //region attribut
-    private String utilisateurDuTelephoneId;
+    private String nomUtilisateur;
+    private String utilisateurId;
     private String derniereLocalisationId;
     private boolean enVoyage;
     private String voyageEnCoursId;
     private List<String> historiqueDesVoyagesId;
     private int tempsDuVoyage; // en minutes
     private int tempsSurUnTelephone; // en minutes
-    private int distanceDuVoyage; //en mètres
-    private int distanceSurUnTelephone; //en mètres
     private int frequenceCollecteLocalisation; //en minutes
     private double distanceTotalParcouru;
     private double disanceSurTelephoneParcouru;
     private int tempsTotalParcourru;
     private int tempsParcouruSurTelephone;
+    private int nbVoyage;
     //endregion
 
 
     //region getters and setters
 
-    public String getUtilisateurDuTelephoneId() {
-        return utilisateurDuTelephoneId;
+
+    public String getNomUtilisateur() {
+        return nomUtilisateur;
     }
 
-    public void setUtilisateurDuTelephoneId(String utilisateurDuTelephoneId) {
-        this.utilisateurDuTelephoneId = utilisateurDuTelephoneId;
+    public void setNomUtilisateur(String nomUtilisateur) {
+        this.nomUtilisateur = nomUtilisateur;
     }
+
     public boolean isEnVoyage() {
         return enVoyage;
     }
@@ -85,22 +87,6 @@ public class Avatar extends BaseObservable {
         this.tempsSurUnTelephone = tempsSurUnTelephone;
     }
 
-    public int getDistanceDuVoyage() {
-        return distanceDuVoyage;
-    }
-
-    public void setDistanceDuVoyage(int distanceDuVoyage) {
-        this.distanceDuVoyage = distanceDuVoyage;
-    }
-
-    public int getDistanceSurUnTelephone() {
-        return distanceSurUnTelephone;
-    }
-
-    public void setDistanceSurUnTelephone(int distanceSurUnTelephone) {
-        this.distanceSurUnTelephone = distanceSurUnTelephone;
-    }
-
     public int getFrequenceCollecteLocalisation() {
         return frequenceCollecteLocalisation;
     }
@@ -116,6 +102,31 @@ public class Avatar extends BaseObservable {
 
     public void setDerniereLocalisationId(String derniereLocalisationId) {
         this.derniereLocalisationId = derniereLocalisationId;
+    }
+
+
+    public int getTempsTotalParcourru() {
+        return tempsTotalParcourru;
+    }
+
+    public void setTempsTotalParcourru(int tempsTotalParcourru) {
+        this.tempsTotalParcourru = tempsTotalParcourru;
+    }
+
+    public int getTempsParcouruSurTelephone() {
+        return tempsParcouruSurTelephone;
+    }
+
+    public void setTempsParcouruSurTelephone(int tempsParcouruSurTelephone) {
+        this.tempsParcouruSurTelephone = tempsParcouruSurTelephone;
+    }
+
+    public String getUtilisateurId() {
+        return utilisateurId;
+    }
+
+    public void setUtilisateurId(String utilisateurId) {
+        this.utilisateurId = utilisateurId;
     }
 
     public double getDistanceTotalParcouru() {
@@ -134,20 +145,12 @@ public class Avatar extends BaseObservable {
         this.disanceSurTelephoneParcouru = disanceSurTelephoneParcouru;
     }
 
-    public int getTempsTotalParcourru() {
-        return tempsTotalParcourru;
+    public int getNbVoyage() {
+        return nbVoyage;
     }
 
-    public void setTempsTotalParcourru(int tempsTotalParcourru) {
-        this.tempsTotalParcourru = tempsTotalParcourru;
-    }
-
-    public int getTempsParcouruSurTelephone() {
-        return tempsParcouruSurTelephone;
-    }
-
-    public void setTempsParcouruSurTelephone(int tempsParcouruSurTelephone) {
-        this.tempsParcouruSurTelephone = tempsParcouruSurTelephone;
+    public void setNbVoyage(int nbVoyage) {
+        this.nbVoyage = nbVoyage;
     }
 
     //endregion

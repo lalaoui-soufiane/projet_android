@@ -206,12 +206,13 @@ public class LoginActivity extends AppCompatActivity {
     }
     public Avatar createAvatar(FirebaseUser user, Localisation localisation) {
         Avatar avatar = new Avatar();
+        avatar.setNomUtilisateur(user.getEmail());
+        avatar.setUtilisateurId(user.getUid());
         avatar.setEnVoyage(false);
-        avatar.setDistanceSurUnTelephone(5);
-        avatar.setDistanceDuVoyage(50);
         avatar.setTempsSurUnTelephone(5);
         avatar.setTempsDuVoyage(500);
         avatar.setFrequenceCollecteLocalisation(1);
+        avatar.setNbVoyage(0);
         avatar.setDerniereLocalisationId(localisation.getLocalisationId());
         db.collection("avatars").document(user.getUid()).set(avatar);
         return avatar;

@@ -2,31 +2,18 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.HistoriqueVoyagesActivity">
-
-    <data>
-
-        <variable
-            name="activity"
-            type="fr.ccm.m1.android.projet.activity.HistoriqueVoyagesActivity" />
-
-        <variable
-            name="username"
-            type="java.lang.String" />
-    </data>
+    tools:context=".activity.AvatarsSurMonTelActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/avatar_localisation_retour_btn"
-            android:layout_width="113dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="16dp"
-            android:onClick="@{() -> activity.goToMenu()}"
-            android:text="@string/retour"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

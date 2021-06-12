@@ -1,8 +1,6 @@
 package fr.ccm.m1.android.projet.activity;
 
 import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -64,6 +62,48 @@ public class MenuActivity extends AppCompatActivity {
         }
 
     }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(mAuth.getCurrentUser() == null){
+            goToLogin();
+        }else{
+            createAvatarListener();
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
+
+    public void goToAvatarSurMonTel(){
+        Intent menuActivity = new Intent(MenuActivity.this, AvatarsSurMonTelActivity.class);
+        startActivity(menuActivity);
+        finish();
+    }
+
+    public void goToConfigAvatar(){
+        Intent menuActivity = new Intent(MenuActivity.this, ConfigAvatarActivity.class);
+        startActivity(menuActivity);
+        finish();
+    }
+
+    public void goToHistoriqueVoyages(){
+        Intent menuActivity = new Intent(MenuActivity.this, HistoriqueVoyagesActivity.class);
+        startActivity(menuActivity);
+        finish();
+    }
+
+    public void goToLogin() {
+        FirebaseAuth.getInstance().signOut();
+        Intent loginActivity = new Intent(MenuActivity.this, LoginActivity.class);
+        startActivity(loginActivity);
+        finish(); //Stops the current activity
+    }
+
     public void createAvatarListener(){
         final DocumentReference docRef = db.collection("avatars").document(mAuth.getCurrentUser().getUid());
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -99,48 +139,6 @@ public class MenuActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if(mAuth.getCurrentUser() == null){
-            goToLogin();
-        }else{
-            createAvatarListener();
-        }
-    }
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        this.finish();
-    }
-
-
-
-    public void goToAvatarSurMonTel(){
-        Intent menuActivity = new Intent(MenuActivity.this, AvatarsSurMonTelActivity.class);
-        startActivity(menuActivity);
-        finish();
-    }
-
-    public void goToConfigAvatar(){
-        Intent menuActivity = new Intent(MenuActivity.this, ConfigAvatarActivity.class);
-        startActivity(menuActivity);
-        finish();
-    }
-
-    public void goToHistoriqueVoyages(){
-        Intent menuActivity = new Intent(MenuActivity.this, HistoriqueVoyagesActivity.class);
-        startActivity(menuActivity);
-        finish();
-    }
-
-    public void goToLogin() {
-        FirebaseAuth.getInstance().signOut();
-        Intent loginActivity = new Intent(MenuActivity.this, LoginActivity.class);
-        startActivity(loginActivity);
-        finish(); //Stops the current activity
     }
 
     public void envoyerAvatar(){
@@ -180,6 +178,7 @@ public class MenuActivity extends AppCompatActivity {
     public void createVoyage(Localisation localisation){
         DocumentReference documentReference = db.collection("voyage").document();
         Voyage voyage = new Voyage();
+        voyage.setNumero(String.valueOf(avatar.getNbVoyage() +1));
         voyage.setVoyageId(documentReference.getId());
         List<String> localisationIdList = new ArrayList<>();
         localisationIdList.add(localisation.getLocalisationId());
@@ -194,6 +193,7 @@ public class MenuActivity extends AppCompatActivity {
                 .update("derniereLocalisationId", localisation.getLocalisationId(),
                                 "enVoyage", true,
                         "historiqueDesVoyagesId", voyageIdList,
+                        "nbVoyage",avatar.getNbVoyage()+1,
                         "voyageEnCoursId", documentReference.getId());
         documentReference.set(voyage);
         db.collection("utilisateurs").document(localisation.getReferenceUtilisateurId()).update("avatarInviteListe", FieldValue.arrayUnion(mAuth.getCurrentUser().getUid()));

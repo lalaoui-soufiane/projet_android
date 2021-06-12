@@ -5,6 +5,7 @@ import java.util.List;
 public class Voyage{
 
     //region attribut
+    private String numero;
     private String voyageId;
     private List<String> trajet;
 
@@ -29,6 +30,13 @@ public class Voyage{
         this.trajet = trajet;
     }
 
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
 
     //endregion
 }

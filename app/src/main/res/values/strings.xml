@@ -22,4 +22,6 @@
     <string name="distance_du_voyang_km">Distance du voyang (km) :</string>
     <string name="temps_sur_un_t_l_phone_minute">Temps sur un téléphone (minute) :</string>
     <string name="valider_les_modifications">Valider les modifications</string>
+    <string name="renvoyer_chez_l_utilisateur">Renvoyer</string>
+    <string name="avatar_de">Avatar de :</string>
 </resources>
