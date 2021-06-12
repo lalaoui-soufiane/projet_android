@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 public class Utilisateur {
 
     // region attributs
-    private String id;
     private String nom;
     private String derniereLocalisationId;
     private List<Avatar> avatarInviteListe;
@@ -54,13 +53,6 @@ public class Utilisateur {
         this.minimumFrequenceCollecteLocalisation = minimumFrequenceCollecteLocalisation;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
     //endregion
 
 

@@ -40,6 +40,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -209,7 +210,7 @@ public class LoginActivity extends AppCompatActivity {
         avatar.setDistanceSurUnTelephone(5);
         avatar.setDistanceDuVoyage(50);
         avatar.setTempsSurUnTelephone(5);
-        avatar.setDistanceDuVoyage(500);
+        avatar.setTempsDuVoyage(500);
         avatar.setFrequenceCollecteLocalisation(1);
         avatar.setDerniereLocalisationId(localisation.getLocalisationId());
         db.collection("avatars").document(user.getUid()).set(avatar);
@@ -242,6 +243,7 @@ public class LoginActivity extends AppCompatActivity {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setNom(user.getEmail());
         utilisateur.setDerniereLocalisationId(localisation.getLocalisationId());
+        utilisateur.setAvatarInviteListe( new ArrayList<>());
         db.collection("utilisateurs").document(user.getUid()).set(utilisateur);
         return utilisateur;
     }

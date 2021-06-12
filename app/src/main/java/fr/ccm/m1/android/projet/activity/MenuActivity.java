@@ -5,6 +5,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,15 +19,22 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import fr.ccm.m1.android.projet.R;
 import fr.ccm.m1.android.projet.databinding.ActivityMenuBinding;
 import fr.ccm.m1.android.projet.model.Avatar;
 import fr.ccm.m1.android.projet.model.Localisation;
+import fr.ccm.m1.android.projet.model.Utilisateur;
+import fr.ccm.m1.android.projet.model.Voyage;
 
 
 public class MenuActivity extends AppCompatActivity {
@@ -34,6 +42,7 @@ public class MenuActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private Avatar avatar = new Avatar();
+    private Localisation localisation = new Localisation();
     public final ObservableField<String>  localisationAdresse = new ObservableField<>();
     public final ObservableField<String>  enVoyage = new ObservableField<>();
 
@@ -135,10 +144,93 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void envoyerAvatar(){
-        //todo
+        if(avatar.isEnVoyage()){
+            Toast.makeText(MenuActivity.this,"l'avatar est déjà en voyage!",Toast.LENGTH_LONG).show();
+        }else {
+            db.collection("utilisateurs").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        List<String> localisationIdList = new ArrayList<>();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            localisationIdList.add((String) document.get("derniereLocalisationId"));
+                        }
+                        db.collection("localisation").whereIn("localisationId",localisationIdList).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    List<Localisation> localisationList = new ArrayList<>();
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        localisationList.add(document.toObject(Localisation.class));
+                                    }
+                                    createVoyage(localisation.localisationDuTelephoneLePlusProche(localisationList));
+                                } else {
+                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                }
+                            }
+                        });
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+        }
     }
+
+    public void createVoyage(Localisation localisation){
+        DocumentReference documentReference = db.collection("voyage").document();
+        Voyage voyage = new Voyage();
+        voyage.setVoyageId(documentReference.getId());
+        List<String> localisationIdList = new ArrayList<>();
+        localisationIdList.add(localisation.getLocalisationId());
+        voyage.setTrajet(localisationIdList);
+        List<String> voyageIdList = new ArrayList<>();
+        voyageIdList.add(documentReference.getId());
+        avatar.setEnVoyage(true);
+        avatar.setHistoriqueDesVoyagesId(voyageIdList);
+        avatar.setVoyageEnCoursId(documentReference.getId());
+        avatar.setDerniereLocalisationId(localisation.getLocalisationId());
+        db.collection("avatars").document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
+                .update("derniereLocalisationId", localisation.getLocalisationId(),
+                                "enVoyage", true,
+                        "historiqueDesVoyagesId", voyageIdList,
+                        "voyageEnCoursId", documentReference.getId());
+        documentReference.set(voyage);
+        db.collection("utilisateurs").document(localisation.getReferenceUtilisateurId()).update("avatarInviteListe", FieldValue.arrayUnion(mAuth.getCurrentUser().getUid()));
+    }
+
     public void ramenerAvatar(){
-        //todo
+        if(!avatar.isEnVoyage()){
+            Toast.makeText(MenuActivity.this,"l'avatar n'est pas en voyage!",Toast.LENGTH_LONG).show();
+        }else {
+            db.collection("utilisateurs").document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Utilisateur utilisateur = document.toObject(Utilisateur.class);
+                            assert utilisateur != null;
+                            db.collection("avatars").document(mAuth.getCurrentUser().getUid()).update(
+                                    "derniereLocalisationId",utilisateur.getDerniereLocalisationId(),
+                                    "enVoyage", false,
+                                    "voyageEnCoursId", null,
+                                    "disanceSurTelephoneParcouru",0,
+                                    "distanceTotalParcouru",0,
+                                    "tempsParcouruSurTelephone",0,
+                                    "tempsTotalParcourru",0);
+
+                        } else {
+                            Log.d(TAG, "No such document");
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                }
+            });
+
+        }
+
     }
 
     //region getters and setters

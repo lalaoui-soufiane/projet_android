@@ -1,10 +1,7 @@
 package fr.ccm.m1.android.projet.model;
 
 import android.location.Location;
-
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class Localisation {
 
@@ -71,5 +68,26 @@ public class Localisation {
 
     //endregion
 
+
+    public Localisation localisationDuTelephoneLePlusProche(List<Localisation> localisationList){
+        Localisation res = localisationList.get(0);
+        Double distanceLaPlusPetite = null;
+        Location maLocalisation = new Location("myLocation");
+        maLocalisation.setLatitude(getLatitude());
+        maLocalisation.setLongitude(getLongitude());
+        Location tempLocation = new Location("tempLocation");
+        for (Localisation localisation : localisationList){
+            if (!localisation.getLocalisationId().equals(getLocalisationId())){
+                tempLocation.setLatitude(localisation.getLatitude());
+                tempLocation.setLongitude(localisation.getLongitude());
+                if(distanceLaPlusPetite == null || maLocalisation.distanceTo(tempLocation) < distanceLaPlusPetite){
+                    res = localisation;
+                }
+            }
+
+        }
+        return res;
+
+    }
 
 }

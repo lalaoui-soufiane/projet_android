@@ -25,6 +25,10 @@ public class Avatar extends BaseObservable {
     private int distanceDuVoyage; //en mètres
     private int distanceSurUnTelephone; //en mètres
     private int frequenceCollecteLocalisation; //en minutes
+    private double distanceTotalParcouru;
+    private double disanceSurTelephoneParcouru;
+    private int tempsTotalParcourru;
+    private int tempsParcouruSurTelephone;
     //endregion
 
 
@@ -97,25 +101,53 @@ public class Avatar extends BaseObservable {
         this.distanceSurUnTelephone = distanceSurUnTelephone;
     }
 
-    @Bindable
     public int getFrequenceCollecteLocalisation() {
         return frequenceCollecteLocalisation;
     }
 
     public void setFrequenceCollecteLocalisation(int frequenceCollecteLocalisation) {
         this.frequenceCollecteLocalisation = frequenceCollecteLocalisation;
-        notifyPropertyChanged(BR.frequenceCollecteLocalisation);
 
     }
 
-    @Bindable
     public String getDerniereLocalisationId() {
         return derniereLocalisationId;
     }
 
     public void setDerniereLocalisationId(String derniereLocalisationId) {
         this.derniereLocalisationId = derniereLocalisationId;
-        notifyPropertyChanged(BR.derniereLocalisationId);
+    }
+
+    public double getDistanceTotalParcouru() {
+        return distanceTotalParcouru;
+    }
+
+    public void setDistanceTotalParcouru(double distanceTotalParcouru) {
+        this.distanceTotalParcouru = distanceTotalParcouru;
+    }
+
+    public double getDisanceSurTelephoneParcouru() {
+        return disanceSurTelephoneParcouru;
+    }
+
+    public void setDisanceSurTelephoneParcouru(double disanceSurTelephoneParcouru) {
+        this.disanceSurTelephoneParcouru = disanceSurTelephoneParcouru;
+    }
+
+    public int getTempsTotalParcourru() {
+        return tempsTotalParcourru;
+    }
+
+    public void setTempsTotalParcourru(int tempsTotalParcourru) {
+        this.tempsTotalParcourru = tempsTotalParcourru;
+    }
+
+    public int getTempsParcouruSurTelephone() {
+        return tempsParcouruSurTelephone;
+    }
+
+    public void setTempsParcouruSurTelephone(int tempsParcouruSurTelephone) {
+        this.tempsParcouruSurTelephone = tempsParcouruSurTelephone;
     }
 
     //endregion

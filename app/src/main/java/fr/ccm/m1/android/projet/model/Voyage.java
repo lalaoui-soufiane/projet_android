@@ -5,8 +5,7 @@ import java.util.List;
 public class Voyage{
 
     //region attribut
-
-    private int voyageId;
+    private String voyageId;
     private List<String> trajet;
 
     //endregion
@@ -14,11 +13,11 @@ public class Voyage{
     //region getters and setters
 
 
-    public int getVoyageId() {
+    public String getVoyageId() {
         return voyageId;
     }
 
-    public void setVoyageId(int voyageId) {
+    public void setVoyageId(String voyageId) {
         this.voyageId = voyageId;
     }
 
