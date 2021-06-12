@@ -24,4 +24,6 @@
     <string name="valider_les_modifications">Valider les modifications</string>
     <string name="renvoyer_chez_l_utilisateur">Renvoyer</string>
     <string name="avatar_de">Avatar de :</string>
+    <string name="voyage_num_ro">voyage numéro :</string>
+    <string name="voir_itin_raire">Voir itinéraire</string>
 </resources>
