@@ -70,8 +70,8 @@ public class Localisation {
 
 
     public Localisation localisationDuTelephoneLePlusProche(List<Localisation> localisationList){
-        Localisation res = localisationList.get(0);
-        Double distanceLaPlusPetite = null;
+        Localisation res = null;
+        Float distanceLaPlusPetite = null;
         Location maLocalisation = new Location("myLocation");
         maLocalisation.setLatitude(getLatitude());
         maLocalisation.setLongitude(getLongitude());
@@ -82,6 +82,7 @@ public class Localisation {
                 tempLocation.setLongitude(localisation.getLongitude());
                 if(distanceLaPlusPetite == null || maLocalisation.distanceTo(tempLocation) < distanceLaPlusPetite){
                     res = localisation;
+                    distanceLaPlusPetite = maLocalisation.distanceTo(tempLocation);
                 }
             }
 

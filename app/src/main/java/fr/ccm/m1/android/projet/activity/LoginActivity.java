@@ -244,6 +244,7 @@ public class LoginActivity extends AppCompatActivity {
         utilisateur.setNom(user.getEmail());
         utilisateur.setDerniereLocalisationId(localisation.getLocalisationId());
         utilisateur.setAvatarInviteListe( new ArrayList<>());
+        utilisateur.setFrequenceUpdateLocalisation(10);
         db.collection("utilisateurs").document(user.getUid()).set(utilisateur);
         return utilisateur;
     }

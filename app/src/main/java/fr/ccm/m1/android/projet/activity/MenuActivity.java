@@ -89,7 +89,7 @@ public class MenuActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Localisation localisation = document.toObject(Localisation.class);
+                        localisation = document.toObject(Localisation.class);
                         localisationAdresse.set(localisation.getAdresseDetail());
                     } else {
                         Log.d(TAG, "No such document");
@@ -220,6 +220,7 @@ public class MenuActivity extends AppCompatActivity {
                                     "tempsParcouruSurTelephone",0,
                                     "tempsTotalParcourru",0);
 
+                            db.collection("utilisateurs").document(localisation.getReferenceUtilisateurId()).update("avatarInviteListe", FieldValue.arrayRemove(mAuth.getCurrentUser().getUid()));
                         } else {
                             Log.d(TAG, "No such document");
                         }
@@ -228,9 +229,7 @@ public class MenuActivity extends AppCompatActivity {
                     }
                 }
             });
-
         }
-
     }
 
     //region getters and setters

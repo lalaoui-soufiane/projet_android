@@ -35,6 +35,7 @@ public class ConfigAvatarActivity extends AppCompatActivity {
     public final ObservableField<Integer> distanceVoyage = new ObservableField<>();
     public final ObservableField<Integer> distanceTelephone = new ObservableField<>();
     public final ObservableField<Integer> frequenceCollecte = new ObservableField<>();
+    private boolean enVoyage = true;
 
 
 
@@ -89,6 +90,7 @@ public class ConfigAvatarActivity extends AppCompatActivity {
                     if (document.exists()) {
                         Avatar avatar = document.toObject(Avatar.class);
                         assert avatar != null;
+                        enVoyage=avatar.isEnVoyage();
                         tempsVoyage.set(avatar.getTempsDuVoyage());
                         tempsTelephone.set(avatar.getTempsSurUnTelephone());
                         distanceVoyage.set(avatar.getDistanceDuVoyage());
@@ -105,8 +107,13 @@ public class ConfigAvatarActivity extends AppCompatActivity {
     }
 
     public void modifier(){
+        if(enVoyage){
+            Toast.makeText(ConfigAvatarActivity.this,"ERREUR : l'avatar est en voyage, on ne peu pas modifier sa configuration",Toast.LENGTH_LONG).show();
+            return;
+        }
         if(distanceVoyage.get() <=0  || distanceTelephone.get() <=0 || tempsTelephone.get() <= 0 || tempsVoyage.get() <= 0 || frequenceCollecte.get() <= 0){
             Toast.makeText(ConfigAvatarActivity.this,"ERREUR : les valeurs doivent être supérieur à 0",Toast.LENGTH_LONG).show();
+            return;
         }
         db.collection("avatars").document(mAuth.getCurrentUser().getUid())
                 .update(
@@ -116,18 +123,15 @@ public class ConfigAvatarActivity extends AppCompatActivity {
                         "tempsDuVoyage",tempsVoyage.get(),
                         "tempsSurUnTelephone",tempsTelephone.get()
                 ).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(ConfigAvatarActivity.this,"configuration validé",Toast.LENGTH_LONG).show();
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(ConfigAvatarActivity.this,"configuration validé",Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(ConfigAvatarActivity.this,"Erreur serveur",Toast.LENGTH_LONG).show();
                     }
                 });
-        ;
     }
-
 }

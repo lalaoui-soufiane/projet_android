@@ -1,17 +1,14 @@
 package fr.ccm.m1.android.projet.model;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Utilisateur {
 
     // region attributs
     private String nom;
     private String derniereLocalisationId;
-    private List<Avatar> avatarInviteListe;
-    private int minimumFrequenceCollecteLocalisation;
+    private List<String> avatarInviteListe;
+    private int frequenceUpdateLocalisation;
     // endregion
 
     //region methodes
@@ -37,20 +34,20 @@ public class Utilisateur {
         this.derniereLocalisationId = derniereLocalisationId;
     }
 
-    public List<Avatar> getAvatarInviteListe() {
+    public List<String> getAvatarInviteListe() {
         return avatarInviteListe;
     }
 
-    public void setAvatarInviteListe(List<Avatar> avatarInviteListe) {
+    public void setAvatarInviteListe(List<String> avatarInviteListe) {
         this.avatarInviteListe = avatarInviteListe;
     }
 
-    public int getMinimumFrequenceCollecteLocalisation() {
-        return minimumFrequenceCollecteLocalisation;
+    public int getFrequenceUpdateLocalisation() {
+        return frequenceUpdateLocalisation;
     }
 
-    public void setMinimumFrequenceCollecteLocalisation(int minimumFrequenceCollecteLocalisation) {
-        this.minimumFrequenceCollecteLocalisation = minimumFrequenceCollecteLocalisation;
+    public void setFrequenceUpdateLocalisation(int frequenceUpdateLocalisation) {
+        this.frequenceUpdateLocalisation = frequenceUpdateLocalisation;
     }
 
     //endregion
